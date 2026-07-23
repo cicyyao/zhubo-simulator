@@ -15,7 +15,7 @@ app.use(cors())
 app.use(express.json({ limit: '10mb' }))
 
 // 前端构建目录（生产模式用）
-const DIST_DIR = path.resolve(__dirname, '..', 'dist')
+const DIST_DIR = path.resolve(__dirname, 'public')
 
 // ===== 动态加载人物设定 =====
 const MATERIALS_DIR = path.resolve(__dirname, '..', 'materials')

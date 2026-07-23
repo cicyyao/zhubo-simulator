@@ -27,7 +27,9 @@
       "Bash(ping -n 1 github.com)",
       "Bash(curl -s https://zhubo-simulator-production.up.railway.app/api/status)",
       "Bash(curl -s -X POST https://zhubo-simulator-production.up.railway.app/api/status -H \"Content-Type: application/json\" -d '{}')",
-      "Bash(curl -s -o /dev/null -w \"GET /api/status: HTTP %{http_code}\\\\n\" https://zhubo-simulator-production.up.railway.app/api/status)"
+      "Bash(curl -s -o /dev/null -w \"GET /api/status: HTTP %{http_code}\\\\n\" https://zhubo-simulator-production.up.railway.app/api/status)",
+      "Bash(node backend/server.js)",
+      "Bash(curl -s -X POST http://localhost:3001/api/chat -H \"Content-Type: application/json\" -d '{\"message\":\"在吗\",\"history\":[]}')"
     ]
   }
 }
