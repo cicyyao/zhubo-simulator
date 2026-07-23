@@ -5,7 +5,7 @@ export default defineConfig({
   plugins: [react()],
   base: '/',
   build: {
-    outDir: 'backend/public',
+    outDir: 'backend/wwwroot',
   },
   server: {
     port: 5173,
