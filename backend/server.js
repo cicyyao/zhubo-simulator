@@ -242,7 +242,7 @@ if (fs.existsSync(DIST_DIR)) {
 }
 
 app.listen(PORT, () => {
-  console.log(`🎭 好友模拟器服务运行在 http://localhost:${PORT}`)
+  console.log(`🎭 好友模拟器服务运行在 http://0.0.0.0:${PORT}`)
   console.log(`📁 人物设定：${PROFILE_PATH}`)
   console.log(`📁 对话示例：${EXAMPLES_PATH}`)
   const key = process.env.DEEPSEEK_API_KEY || process.env.LLM_API_KEY
@@ -252,3 +252,16 @@ app.listen(PORT, () => {
     console.log(`✅ API已配置 | 模型: ${getModelName()} | 角色: ${profile.name || '她'}`)
   }
 })
+
+// 捕获未处理的错误，防止静默崩溃
+process.on('uncaughtException', (err) => {
+  console.error('❌ 未捕获的异常:', err)
+})
+process.on('unhandledRejection', (err) => {
+  console.error('❌ 未处理的 Promise 拒绝:', err)
+})
+
+console.log('⏳ 正在启动服务器...')
+console.log(`📌 PORT: ${PORT}, NODE_ENV: ${process.env.NODE_ENV || 'production'}`)
+console.log(`📌 是否加载 dist: ${fs.existsSync(DIST_DIR)}`)
+console.log(`📌 环境变量 DEEPSEEK_API_KEY: ${process.env.DEEPSEEK_API_KEY ? '已设置' : '未设置'}`)
