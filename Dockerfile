@@ -1,7 +1,8 @@
+# syntax=docker/dockerfile:1
 FROM node:20-slim
 WORKDIR /app
 
-# 先装依赖（利用 Docker 缓存）
+# 先装依赖
 COPY package*.json ./
 COPY backend/package*.json ./backend/
 RUN npm install
