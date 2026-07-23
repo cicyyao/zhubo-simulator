@@ -1,0 +1,262 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+  background: #ededed;
+  height: 100vh;
+  overflow: hidden;
+}
+
+#root {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.app {
+  width: 420px;
+  height: 100vh;
+  max-height: 780px;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.12);
+  position: relative;
+}
+
+/* ===== Header ===== */
+.chat-header {
+  background: #fff;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #e8e8e8;
+  flex-shrink: 0;
+}
+
+.chat-header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.chat-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.chat-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.chat-avatar-text {
+  color: #fff;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.chat-header-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.chat-header-name {
+  font-size: 17px;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.chat-header-status {
+  font-size: 12px;
+  color: #07c160;
+}
+
+.chat-header-status.offline {
+  color: #999;
+}
+
+.btn-reset {
+  background: none;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-size: 16px;
+  color: #666;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-reset:hover {
+  background: #f5f5f5;
+  color: #333;
+}
+
+/* ===== Message List ===== */
+.message-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px 20px;
+  background: #f7f7f7;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.message-list::-webkit-scrollbar {
+  width: 4px;
+}
+
+.message-list::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 2px;
+}
+
+.msg-system {
+  display: flex;
+  justify-content: center;
+  margin: 4px 0;
+}
+
+.msg-system span {
+  background: rgba(0,0,0,0.06);
+  color: #888;
+  font-size: 12px;
+  padding: 4px 14px;
+  border-radius: 4px;
+  max-width: 80%;
+  text-align: center;
+}
+
+.msg-row {
+  display: flex;
+}
+
+.msg-row-me {
+  justify-content: flex-end;
+}
+
+.msg-row-other {
+  justify-content: flex-start;
+}
+
+.msg-bubble-wrapper {
+  max-width: 75%;
+}
+
+.msg-name {
+  font-size: 11px;
+  color: #999;
+  margin-bottom: 3px;
+  text-align: right;
+  padding-right: 4px;
+}
+
+.msg-name-other {
+  text-align: left;
+  padding-left: 4px;
+}
+
+.msg-bubble {
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 15px;
+  line-height: 1.5;
+  word-break: break-word;
+  white-space: pre-wrap;
+}
+
+.msg-bubble-me {
+  background: #95ec69;
+  color: #1a1a1a;
+  border-top-right-radius: 2px;
+}
+
+.msg-bubble-other {
+  background: #fff;
+  color: #1a1a1a;
+  border-top-left-radius: 2px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+
+.msg-error {
+  background: #fff3f3 !important;
+  color: #c0392b !important;
+}
+
+/* ===== Message Input ===== */
+.message-input {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  padding: 12px 16px;
+  background: #fff;
+  border-top: 1px solid #e8e8e8;
+  flex-shrink: 0;
+}
+
+.message-input textarea {
+  flex: 1;
+  border: none;
+  outline: none;
+  resize: none;
+  font-size: 15px;
+  font-family: inherit;
+  padding: 8px 0;
+  max-height: 100px;
+  line-height: 1.5;
+  color: #1a1a1a;
+}
+
+.message-input textarea::placeholder {
+  color: #bbb;
+}
+
+.btn-send {
+  background: #07c160;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 20px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background 0.2s;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.btn-send:hover:not(:disabled) {
+  background: #06ad56;
+}
+
+.btn-send:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+/* ===== Mobile ===== */
+@media (max-width: 480px) {
+  .app {
+    width: 100%;
+    height: 100vh;
+    max-height: none;
+    border-radius: 0;
+  }
+}
