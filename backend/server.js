@@ -1,24 +1,21 @@
-import 'dotenv/config'
 import express from 'express'
 import cors from 'cors'
 import fs from 'fs'
 import path from 'path'
 import { fileURLToPath } from 'url'
+import dotenv from 'dotenv'
 import OpenAI from 'openai'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
+dotenv.config({ path: path.join(__dirname, '.env') })
 const app = express()
 const PORT = process.env.PORT || 3001
 
 app.use(cors())
 app.use(express.json({ limit: '10mb' }))
 
-// ===== 生产模式：前端静态文件 =====
+// 前端构建目录（生产模式用）
 const DIST_DIR = path.resolve(__dirname, '..', 'dist')
-if (fs.existsSync(DIST_DIR)) {
-  app.use(express.static(DIST_DIR))
-  console.log(`📦 前端静态文件已加载，访问 http://localhost:${PORT} 即可使用`)
-}
 
 // ===== 动态加载人物设定 =====
 const MATERIALS_DIR = path.resolve(__dirname, '..', 'materials')
@@ -232,13 +229,16 @@ app.get('/api/status', (req, res) => {
   })
 })
 
-// ===== 前端路由兜底（SPA fallback）=====
+// ===== 前端静态文件（必须在 API 路由之后）=====
 if (fs.existsSync(DIST_DIR)) {
+  app.use(express.static(DIST_DIR))
+
+  // SPA 兜底：非 API 的 GET 请求返回 index.html
   app.get('*', (req, res) => {
-    if (!req.path.startsWith('/api')) {
-      res.sendFile(path.join(DIST_DIR, 'index.html'))
-    }
+    res.sendFile(path.join(DIST_DIR, 'index.html'))
   })
+
+  console.log(`📦 前端静态文件已加载，访问 http://localhost:${PORT} 即可使用`)
 }
 
 app.listen(PORT, () => {

@@ -4,9 +4,10 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "dev": "vite",
+    "start": "node backend/server.js",
+    "postinstall": "cd backend && npm install"
   },
   "dependencies": {
     "react": "^18.3.1",
