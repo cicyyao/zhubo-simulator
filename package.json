@@ -6,10 +6,13 @@
   "scripts": {
     "build": "vite build",
     "dev": "vite",
-    "start": "node backend/server.js",
-    "postinstall": "cd backend && npm install"
+    "start": "node backend/server.js"
   },
   "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.1",
+    "openai": "^6.48.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
